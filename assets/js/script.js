@@ -1,5 +1,6 @@
 
 var generateBtn = document.querySelector("#generate");
+var copyButton = document.querySelector("#copyBtn");
 // var lengthSlider = document.querySelector("#lengthSliderText");
 var includeNumbers = prompt;
 
@@ -166,4 +167,27 @@ function writePassword() {
   passwordText = password;
 }
 
+
+//= function(){
+  // document.querySelector("#password").select();
+  // document.execCommand('copy');
+//}
+
+function copyText() {
+  // Get the text field
+  var text = document.getElementById("password");
+
+  // Select the text field
+  text.select();
+  text.setSelectionRange(0, 128); 
+
+  navigator.clipboard.writeText(text.value);
+
+  
+}
+
+
+
+
 generateBtn.addEventListener("click", writePassword);
+copyButton.addEventListener("click", copyText);
