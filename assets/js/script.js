@@ -1,6 +1,67 @@
 
 var generateBtn = document.querySelector("#generate");
+// var lengthSlider = document.querySelector("#lengthSliderText");
 var includeNumbers = prompt;
+
+
+
+//Char length 
+var lengthCorrect = true;
+var passwordLength = 8;
+
+var slider = document.getElementById("range");
+var sliderOutput = document.getElementById("lengthSliderText");
+sliderOutput.innerHTML = slider.value;
+
+slider.oninput = function() {
+  sliderOutput.innerHTML = this.value;
+  passwordLength = slider.value;
+}
+
+var uppercase = false;
+var lowercase = false;
+var numeric = false;
+var special = false;
+
+var upSelect = document.querySelector("#uppercaseSelect");
+var lowSelect = document.querySelector("#lowercaseSelect");
+var numSelect = document.querySelector("#numericSelect");
+var specSelect = document.querySelector("#specialSelect");
+
+function typeCheck() {
+  if (upSelect.checked === true) {
+    uppercase = true;
+  } else {
+    uppercase = false;
+  }
+  
+  if (lowSelect.checked === true) {
+    lowercase = true;
+    lowSelect.checked = true;
+  } else {
+    lowercase = false;
+    lowSelect.checked = false;
+  }
+  
+  if (numSelect.checked === true) {
+    numeric = true;
+    numSelect.checked = true;
+  } else {
+    numeric = false;
+    numSelect.checked = false;
+  }
+  
+  if (specSelect.checked === true) {
+      special = true;
+       specSelect.checked = true;
+  } else {
+       special = false;
+      specSelect.checked = false;
+  }
+
+}
+
+
 
 function writePassword() {
   // var password = generatePassword();
@@ -11,18 +72,10 @@ function writePassword() {
   var password = "";
   var passwordArr = [];
 
-  //Char length 
-  var lengthCorrect = true;
-  var passwordLength = 8;
-
+  
   //Char types loop
   var charTypes = false;
   
-  var uppercase = false;
-  var lowercase = false;
-  var numeric = false;
-  var special = false;
-
   //Char type declarations
   var lowercaseChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   var uppercaseChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -35,137 +88,28 @@ function writePassword() {
   //Var for ensuring one of each char type is included in final password
   var guaranteedCharsNumber = 0;
   
-  //Char length loop ------------------------------------------------------------------------------>
-  while (lengthCorrect === true) {
-    var passwordLength = prompt("How many characters would you like? (min 8, max 128)", passwordLength);
-    console.log("Password Length: " + passwordLength);
-    
-    if (passwordLength === null) {
-      alert("Generate tool terminated.");
-      return;
-    } else if (passwordLength <= 7 || passwordLength >= 129) {
-      alert("Password length needs to be more than 8 characters, or less than 128 characters. Please try again.");
-      lengthCorrect = true;
-    } else if (passwordLength >= 8 && passwordLength <= 128) {
-      alert("Password length set to: " + passwordLength);
-      lengthCorrect = false;
-    } else {
-      alert("Please enter a valid number.");
-    }
 
-  }
 
-  //Char Types loop ------------------------------------------------------------------------------->
+
   while (charTypes === false) {
 
-    var charLoop = true;
-
-    while (charLoop === true) {
-      var promptYN = prompt("Would you like to include uppercase letters? Y/N");
-      if (promptYN === null) {
-        alert("Generate tool terminated.");
-        return;
-      }
-
-      promptYN = promptYN.toUpperCase();
-
-      if (promptYN === "Y") {
-        alert("Uppercase letters will be included.");
-        uppercase = true;
-        charLoop = false;
-      } else if (promptYN === "N") {
-        alert("Uppercase letters will not be included.");
-        uppercase = false;
-        charLoop = false;
-      } else {
-        alert("Please enter either Y or N.")
-        charLoop = true;
-      }
-    }
-
-    charLoop = true;
-
-    while (charLoop === true) {
-      var promptYN = prompt("Would you like to include lowercase letters? Y/N");
-      if (promptYN === null) {
-        alert("Generate tool terminated.");
-        return;
-      }
-
-      promptYN = promptYN.toUpperCase();
-
-      if (promptYN === "Y") {
-        alert("Lowercase letters will be included.");
-        lowercase = true;
-        charLoop = false;
-      } else if (promptYN === "N") {
-        alert("Lowercase letters will not be included.");
-        lowercase = false;
-        charLoop = false;
-      } else {
-        alert("Please enter either Y or N.")
-        charLoop = true;
-      }
-    }
-
-    charLoop = true;
-
-    while (charLoop === true) {
-      var promptYN = prompt("Would you like to include numeric characters? Y/N");
-      if (promptYN === null) {
-        alert("Generate tool terminated.");
-        return;
-      }
-
-      promptYN = promptYN.toUpperCase();
-
-      if (promptYN === "Y") {
-        alert("Numeric characters will be included.");
-        numeric = true;
-        charLoop = false;
-      } else if (promptYN === "N") {
-        alert("Numeric characters will not be included.");
-        numeric = false;
-        charLoop = false;
-      } else {
-        alert("Please enter either Y or N.")
-        charLoop = true;
-      }
-    }
-
-    charLoop = true;
-
-    while (charLoop === true) {
-      var promptYN = prompt("Would you like to include special characters? Y/N");
-      if (promptYN === null) {
-        alert("Generate tool terminated.");
-        return;
-      }
-
-      promptYN = promptYN.toUpperCase();
-
-      if (promptYN === "Y") {
-        alert("Special characters will be included.");
-        special = true;
-        charLoop = false;
-      } else if (promptYN === "N") {
-        alert("Special characters will not be included.");
-        special = false;
-        charLoop = false;
-      } else {
-        alert("Please enter either Y or N.")
-        charLoop = true;
-      }
-    } 
-
+    typeCheck();
+     
     if (uppercase === true || lowercase === true || numeric === true || special === true) {
-      alert("The character types have been selected, thank you.\nGenerating password now:")
       charTypes = true;
     } else {
       alert("No character types were selected. Please choose at least one type.")
       charTypes = false;
+      return;
     }
   }
+
+  console.log(uppercase);
+  console.log(lowercase);
+  console.log(numeric);
+  console.log(special);
+
+
 
   // Password generation -------------------------------------------------------------------------->
 

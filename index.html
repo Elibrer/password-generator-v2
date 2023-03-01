@@ -1,38 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Password Generator</title>
-    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
-  </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Password Generator</title>
+  <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+</head>
 
 
 
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Password Generator</h1>
-      </header>
-      <div class="card">
-        <div class="card-header">
-          <h2>Generate a Password</h2>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Password Generator</h1>
+    </header>
+    <div class="card">
+      <div class="card-header">
+        <h2>Generate a Password</h2>
+      </div>
+      <div class="card-body">
+        <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
+      </div>
+
+      <h3>Password Length...</h3>
+      <div class="sliderArea">
+        <section class="slidecontainer">
+          <input type="range" min="8" max="128" value="8" class="lengthSliderText" id="range">
+        </section>
+        <h4>Length: <span id="lengthSliderText"></span></h4>
+
+        <!-- <div><span id="lengthSliderText" name="lengthSlider" rows="1" cols="1">Hello</span></div> -->
+
+    
+      </div>
+
+      <h3>Would you like to add...</h3>
+      <section class="charSelectors">
+        <div class="charContainers">
+          <h4>Uppercase?</h4>
+          <input type="checkbox" id="uppercaseSelect" name="uppercaseSelect" value="yes">
         </div>
-        <div class="card-body">
-          <textarea
-            readonly
-            id="password"
-            placeholder="Your Secure Password"
-            aria-label="Generated Password"
-          ></textarea>
+        <div class="charContainers">
+          <h4>Lowercase?</h4>
+          <input type="checkbox" id="lowercaseSelect" name="lowercaseSelect" value="yes">
         </div>
-        <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
+        <div class="charContainers">
+          <h4>Numbers?</h4>
+          <input type="checkbox" id="numericSelect" name="numericSelect" value="yes">
         </div>
+        <div class="charContainers">
+          <h4>Special Chars?</h4>
+          <input type="checkbox" id="specialSelect" name="numericSelect" value="yes">
+        </div>
+      </section>
+
+
+
+
+      <!-- <div>
+          <label class="switch col">
+          <input type="checkbox" id="theme-switcher">
+          <span class="slider round"></span>
+          </label>
+        </div> -->
+
+      <div class="card-footer">
+        <button id="generate" class="btn">Generate Password</button>
       </div>
     </div>
-    <script src="./assets/js/script.js"></script>
-  </body>
+  </div>
+  <script src="./assets/js/script.js"></script>
+</body>
+
 </html>
